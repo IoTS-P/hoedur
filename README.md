@@ -54,7 +54,9 @@ cargo run --bin hoedur-arm --release -- $ARGS
 ```
 
 Chinese mirror:
-because **https://download.qemu.org** resolve failed in our server,
+
+Because **https://download.qemu.org** resolve failed in our server, so change the current lines in `qemu-sys/build.rs` 
+
 change the `/path/to/qemu-..` to where you put your qemu archive 
 ```rust
 // download QEMU
