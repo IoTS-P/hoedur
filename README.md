@@ -26,7 +26,12 @@ Hoedur consists of different main components as listed below:
 ### Dependencies
 Ubuntu 18.04:
 ```sh
-apt install -y clang curl git libfdt-dev libglib2.0-dev libpixman-1-dev libxcb-shape0-dev libxcb-xfixes0-dev ninja-build patchelf pkg-config python3-psutil zstd
+apt install -y clang curl git libfdt-dev libglib2.0-dev libpixman-1-dev libxcb-shape0-dev libxcb-xfixes0-dev ninja-build patchelf pkg-config python3-psutil zstd build-essential 
+```
+
+rust:
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 ### Install
@@ -48,6 +53,26 @@ Run a release build (without install):
 cargo run --bin hoedur-arm --release -- $ARGS
 ```
 
+Chinese mirror:
+because **https://download.qemu.org** resolve failed in our server,
+change the `/path/to/qemu-..` to where you put your qemu archive 
+```rust
+// download QEMU
+  //assert!(Command::new("wget")
+   //   .arg("https://download.qemu.org/qemu-7.1.0.tar.xz")
+    //  .arg("-O")
+     // .arg(&qemu_tar)
+     // .status()
+      //.expect("QEMU download failed")
+      //.success());
+
+  assert!(Command::new("cp")
+          .arg("/path/to/qemu-7.1.0.tar.xz")
+          .arg(&qemu_tar)
+          .status()
+          .expect("no")
+          .success());
+```
 ## Fuzzer / Runner (Hoedur)
 
 ### Fuzzer
